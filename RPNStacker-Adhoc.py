@@ -18,7 +18,7 @@ while 1:
     if element in operators:
         n1 = stack.pop()
         n2 = stack.pop()
-        stack.append(mathExecution(element, n1, n2))
+        stack.append(mathExecution(element, n2, n1))
     elif element == 'STOP':
         print(f"answer = {stack.pop()}")
         break
