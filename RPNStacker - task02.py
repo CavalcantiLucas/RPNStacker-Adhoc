@@ -18,12 +18,9 @@ def tokenValidation(token):
     return 0 #False
 
 arq = open("examples.txt", "r")
-entries = arq.read()
-entries.strip()
+entries = arq.read().split()
 
 for token in entries:
-
-    token = token.rstrip()
 
     if token == "":
         continue
