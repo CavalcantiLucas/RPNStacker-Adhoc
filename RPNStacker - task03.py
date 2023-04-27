@@ -2,6 +2,19 @@ stack = []
 tokens = []
 import re
 
+class Regex:
+    @staticmethod
+    def isNum(token): # REGEX de identificação dos números
+        if re.findall( "[0-9]", str(token)):
+            return 1
+        return 0
+
+    @staticmethod
+    def isOP(token): # REGEX de identificação dos operadores
+        if re.findall("[+-/*]", token):
+            return 1
+        return 0
+
 def mathExecution(operator, num1, num2):
     if operator == '*':
         return num1 * num2
@@ -12,18 +25,8 @@ def mathExecution(operator, num1, num2):
     if operator == '-':
         return num1 - num2
     
-def isNum(token): # REGEX de identificação dos números
-    if re.findall( "[0-9]", str(token)):
-        return 1
-    return 0
-
-def isOP(token): # REGEX de identificação dos operadores
-    if re.findall("[+-/*]", token):
-        return 1
-    return 0
-
 def tokenValidation(token):
-    if(isNum(token) or isOP(token)):
+    if(Regex.isNum(token) or Regex.isOP(token)):
         return 1 #True
     return 0 #False
 
@@ -35,7 +38,7 @@ for token in entries:
     if token == "":
         continue
     if(tokenValidation(token)):
-        if isOP(token):
+        if Regex.isOP(token):
             if token == '*':
                 tokens.append("type= STAR")
                 tokens.append("lexeme= *")
